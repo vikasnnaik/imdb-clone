@@ -1,38 +1,35 @@
-import MovieCard from "./components/MovieCard";
-
-const movies = [
-  {
-    title: "Inception",
-    year: 2010,
-    rating: 8.8,
-    poster: "https://m.media-amazon.com/images/I/51zUbui+gbL._AC_.jpg",
-  },
-  {
-    title: "Interstellar",
-    year: 2014,
-    rating: 8.6,
-    poster: "https://m.media-amazon.com/images/I/71n58aO413L._AC_SL1024_.jpg",
-  },
-  {
-    title: "The Dark Knight",
-    year: 2008,
-    rating: 9.0,
-    poster: "https://m.media-amazon.com/images/I/51CbU6H5SSL._AC_.jpg",
-  },
-];
+import { useContext } from "react";
+import { ThemeContext } from "./context/ThemeContext";
 
 function App() {
-  return (
-    <div className="min-h-screen bg-black p-6">
-      <h1 className="text-3xl font-bold text-white mb-6">
-        🎬 Movie List
-      </h1>
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
-      <div className="flex flex-wrap gap-6">
-        {movies.map((movie, index) => (
-          <MovieCard key={index} movie={movie} />
-        ))}
-      </div>
+  const appStyle = {
+    backgroundColor: theme === "light" ? "#ffffff" : "#111827",
+    color: theme === "light" ? "#000000" : "#ffffff",
+    minHeight: "100vh",
+    padding: "40px",
+    transition: "background-color 0.3s ease, color 0.3s ease", // smooth animation
+  };
+
+  return (
+    <div style={appStyle}>
+      <h1>Theme Switcher App</h1>
+
+      <p>
+        Current Theme: <strong>{theme}</strong>
+      </p>
+
+      <button
+        onClick={toggleTheme}
+        style={{
+          marginTop: "20px",
+          padding: "10px 16px",
+          cursor: "pointer",
+        }}
+      >
+        Switch to {theme === "light" ? "Dark" : "Light"} Mode
+      </button>
     </div>
   );
 }
