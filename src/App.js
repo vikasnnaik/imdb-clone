@@ -1,36 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
 import MovieCard from "./components/MovieCard";
-import { movies } from "./data/movies";
+
+const movies = [
+  {
+    title: "Inception",
+    year: 2010,
+    rating: 8.8,
+    poster: "https://m.media-amazon.com/images/I/51zUbui+gbL._AC_.jpg",
+  },
+  {
+    title: "Interstellar",
+    year: 2014,
+    rating: 8.6,
+    poster: "https://m.media-amazon.com/images/I/71n58aO413L._AC_SL1024_.jpg",
+  },
+  {
+    title: "The Dark Knight",
+    year: 2008,
+    rating: 9.0,
+    poster: "https://m.media-amazon.com/images/I/51CbU6H5SSL._AC_.jpg",
+  },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* Existing content */}
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="min-h-screen bg-black p-6">
+      <h1 className="text-3xl font-bold text-white mb-6">
+        🎬 Movie List
+      </h1>
 
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-
-        {/* 👇 New Movie Section (Your Task) */}
-        <h2 style={{ marginTop: "30px" }}>🎬 Movie List</h2>
-
-        <div style={{ display: 'flex', gap: '20px', marginTop: '20px' }}>
-          {movies.map((movie) => (
-            <MovieCard key={movie.title} movie={movie} />
-          ))}
-        </div>
-      </header>
+      <div className="flex flex-wrap gap-6">
+        {movies.map((movie, index) => (
+          <MovieCard key={index} movie={movie} />
+        ))}
+      </div>
     </div>
   );
 }
